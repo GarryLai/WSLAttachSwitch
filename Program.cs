@@ -67,7 +67,7 @@ namespace WSLAttachSwitch
                 {
                     using var oldendpoint = ComputeNetworkEndpoint.Open(epid);
                     var epprops = oldendpoint.QueryProperites();
-                    if (!epprops.TryGetProperty("VirtualMachine", out JsonElement vmJsonElement) || vmJsonElement.GetString() != systemid)
+                    /*if (!epprops.TryGetProperty("VirtualMachine", out JsonElement vmJsonElement) || vmJsonElement.GetString() != systemid)
                     {
                         // endpoint not attached to current WSL2 VM, recreate it
                         ComputeNetworkEndpoint.Delete(epid);
@@ -76,7 +76,8 @@ namespace WSLAttachSwitch
                     {
                         Console.WriteLine("Endpoint already attached to current WSL2 VM.");
                         return true;
-                    }
+                    }*/
+                    ComputeNetworkEndpoint.Delete(epid);
                 }
                 JsonNode policies = null;
                 if (vlanIsolationId != null)
